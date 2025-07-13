@@ -1,31 +1,119 @@
 :root {
-    --white: #F9FAF8;
-    --hero-text: #E5E7EB;
-    --header: #1750AC;
+  --white: #f9faf8;
+  --hero-text: #e5e7eb;
+  --header: #1750ac;
+  --black: #17181a;
+  --button-background: #303136;
+  --button-text-color: #29a8ff;
+  --button-blue-color: #005db2;
+  --button-blue-lighter: #339dff;
+  --button-grey-dark: #616161;
+  --button-grey-light: #a5a5a5;
 }
 
-
 * {
-    box-sizing: border-box;
-    margin: 0;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .page {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--header);
-    flex: 1;
-    color: var(--hero-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--header);
+  flex: 1;
+  color: var(--hero-text);
+  font-size: 32px;
+  font-family: "Roboto";
+  font-weight: 900;
 }
 
 .body {
-    background-color: var(--white);
-    flex: 8;
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+  background-color: var(--white);
+  flex: 8;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black);
+  border-radius: 15px;
+  height: 550px;
+  width: 300px;
+  padding: 10px;
+}
+
+.display {
+  display: flex;
+  flex: 1;
+}
+
+.button-container {
+  display: flex;
+  flex: 2;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 3;
+  justify-content: space-between;
+  gap: 5px;
+  color: var(--white);
+}
+
+.operators {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  padding-left: 5px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+  color: var(--button-text-color);
+  background-color: var(--button-background);
+  flex: 1;
+}
+
+.row-1,
+.row-2,
+.row-3,
+.row-4,
+.row-5 {
+  display: flex;
+  flex: content;
+  gap: 5px;
+}
+
+#zero {
+  flex: 2;
+  border-radius: 8px;
+}
+
+.opr {
+    background-color: var(--button-blue-color);
+    color: var(--button-blue-lighter);
+    display: flex;
+    flex: 1;
+    border-radius: 8%;
+    justify-content: center;
+    align-items: center;
+}
+
+#add, #equals {
+    flex: 1.6;
 }
