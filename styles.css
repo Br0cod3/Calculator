@@ -9,6 +9,8 @@
   --button-blue-lighter: #339dff;
   --button-grey-dark: #616161;
   --button-grey-light: #a5a5a5;
+  --equal-background: #1991ff;
+  --equal-background-text: #b2daff;
 }
 
 * {
@@ -50,6 +52,9 @@
   height: 550px;
   width: 300px;
   padding: 10px;
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 20px;
 }
 
 .display {
@@ -104,16 +109,29 @@
   border-radius: 8px;
 }
 
-.opr {
-    background-color: var(--button-blue-color);
-    color: var(--button-blue-lighter);
-    display: flex;
-    flex: 1;
-    border-radius: 8%;
-    justify-content: center;
-    align-items: center;
+.opr,
+#divide {
+  background-color: var(--button-blue-color);
+  color: var(--button-blue-lighter);
+  display: flex;
+  flex: 1;
+  border-radius: 8%;
+  justify-content: center;
+  align-items: center;
 }
 
-#add, #equals {
-    flex: 1.6;
+#add,
+#equals {
+  flex: 1.6;
+}
+
+#ac,
+#cancel {
+  background-color: var(--button-grey-dark);
+  color: var(--button-grey-light);
+}
+
+#equals {
+  background-color: var(--equal-background);
+  color: var(--equal-background-text);
 }
