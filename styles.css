@@ -1,0 +1,31 @@
+:root {
+    --white: #F9FAF8;
+    --hero-text: #E5E7EB;
+    --header: #1750AC;
+}
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--header);
+    flex: 1;
+    color: var(--hero-text);
+}
+
+.body {
+    background-color: var(--white);
+    flex: 8;
+}
