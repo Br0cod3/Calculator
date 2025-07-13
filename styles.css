@@ -130,8 +130,7 @@
   border-radius: 8px;
 }
 
-.opr,
-#divide {
+.opr {
   background-color: var(--button-blue-color);
   color: var(--button-blue-lighter);
   display: flex;
