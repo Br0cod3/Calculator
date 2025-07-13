@@ -11,6 +11,7 @@
   --button-grey-light: #a5a5a5;
   --equal-background: #1991ff;
   --equal-background-text: #b2daff;
+  --display-grey: #818181;
 }
 
 * {
@@ -60,6 +61,25 @@
 .display {
   display: flex;
   flex: 1;
+  font-weight: 500;
+  color: var(--hero-text);
+  flex-direction: column;
+}
+
+.upper {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: var(--display-grey);
+}
+
+.lower {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 32px;
 }
 
 .button-container {
@@ -122,7 +142,7 @@
 
 #add,
 #equals {
-  flex: 1.6;
+  flex: 1.55;
 }
 
 #ac,
