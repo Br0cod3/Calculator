@@ -28,17 +28,34 @@ const operations = {
 
 function updateDisplay(value) {
   calculatorState.currentValue += value.textContent;
-  lowerDisplay.textContent = calculatorState.currentValue;
+  logDisplay()
 }
 
 function setOperation(operation) {
-  calculatorState.operator = operation;
-  updateDisplay(calculatorState.operator)
+  if (calculatorState.currentValue === "") return {};
+  calculatorState.operator = operation.textContent;
+  calculatorState.previousValue = calculatorState.currentValue
+  calculatorState.currentValue = ""
+  logDisplay()
 }
 
-function calculateResult() {}
+function logDisplay() {
+  if (calculatorState.operator === "") {
+    lowerDisplay.textContent = calculatorState.currentValue
+  } 
+  else if (calculatorState.previousValue !== "" && signs.includes(calculatorState.operator)) {
+    lowerDisplay.textContent = calculatorState.previousValue + calculatorState.operator + calculatorState.currentValue
+  }
+  else if (signs.includes(calculatorState.operator)) {
+    lowerDisplay.textContent = calculatorState.previousValue + calculatorState.operator
+  } 
+}
 
 function removeLastDigit() {}
+
+function calculateResult() {
+  upperDisplay.textContent = lowerDisplay.textContent
+}
 
 function clearDisplay() {
   lowerDisplay.textContent = "";
@@ -61,3 +78,5 @@ operators.forEach((element) => {
 ac.addEventListener("click", () => buttonActions.AC());
 
 equal.addEventListener("click", () => buttonActions.equals());
+const signs = ["+", "-", "*", "/"]
+
