@@ -54,7 +54,21 @@ function logDisplay() {
 function removeLastDigit() {}
 
 function calculateResult() {
+  if (calculatorState.currentValue === "" || calculatorState.operator === "") return {}
   upperDisplay.textContent = lowerDisplay.textContent
+  if (calculatorState.operator === "+") {
+    lowerDisplay.textContent = operations.add(parseInt(calculatorState.previousValue), parseInt(calculatorState.currentValue))
+    calculatorState.currentValue = lowerDisplay.textContent
+  } else if (calculatorState.operator === "-") {
+    lowerDisplay.textContent = operations.subtract(parseInt(calculatorState.previousValue), parseInt(calculatorState.currentValue))
+    calculatorState.currentValue = lowerDisplay.textContent
+  } else if (calculatorState.operator === "*") {
+    lowerDisplay.textContent = operations.multiply(parseInt(calculatorState.previousValue), parseInt(calculatorState.currentValue))
+    calculatorState.currentValue = lowerDisplay.textContent
+  } else if (calculatorState.operator === "/") {
+    lowerDisplay.textContent = operations.divide(parseFloat(calculatorState.previousValue), parseFloat(calculatorState.currentValue))
+    calculatorState.currentValue = lowerDisplay.textContent
+  }
 }
 
 function clearDisplay() {
