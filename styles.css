@@ -12,7 +12,7 @@
   --equal-background: #1991ff;
   --equal-background-text: #b2daff;
   --display-grey: #818181;
-  --display-sign-color: #109DFF;
+  --display-sign-color: #109dff;
 }
 
 * {
@@ -147,8 +147,13 @@
 
 #ac,
 #cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
   background-color: var(--button-grey-dark);
   color: var(--button-grey-light);
+  flex: 1;
 }
 
 #equals {
@@ -157,5 +162,5 @@
 }
 
 .img {
-    filter: invert(1) brightness(0.7);
+  filter: invert(1) brightness(0.7);
 }

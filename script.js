@@ -1,37 +1,34 @@
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 function subtract(a, b) {
-    return a - b;
+  return a - b;
 }
 
 function divide(a, b) {
-    if (b === 0) {
-        return "undefined"
-    } else {
-        return a / b;
-    }
+  return b === 0 ? "undefined" : a / b;
 }
 
 function multiply(a, b) {
-    return a * b;
+  return a * b;
 }
 
 function operate(a, b, operator) {
-    return operator(a, b)
+  return operator(a, b);
 }
 
-let buttons = document.querySelectorAll(".btn")
-buttons.forEach(element => {
-    element.addEventListener("click", alertt)
-})
+let buttons = document.querySelectorAll(".btn");
+buttons.forEach((element) => {
+  element.addEventListener("click", addToDisplay);
+});
 
-function alertt(element) {
-    alert(element.target.textContent);
-}
+let operators = document.querySelectorAll(".opr");
+operators.forEach((element) => {
+  if (element.textContent !== "=") {
+    element.addEventListener("click", addToDisplay);
+  }
+});
 
-function addToDisplay(element) {
-    const main = document.querySelector(".upper").textContent = ""
-    const aux = document.querySelector(".lower").textContent = ""
-}
+let equal = document.querySelector("#equals");
+equal.addEventListener("click", func);
