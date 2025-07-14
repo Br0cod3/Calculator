@@ -145,7 +145,7 @@
 }
 
 #ac,
-#cancel {
+#clr {
   display: flex;
   justify-content: center;
   align-items: center;
