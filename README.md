@@ -1,1 +1,1 @@
-A simple basic calculator made with html, css(Flexbox) and Javascript
+A simple basic calculator made with HTML, CSS(Flexbox) and Javascript
