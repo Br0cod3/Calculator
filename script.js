@@ -4,7 +4,7 @@ let ac = document.querySelector("#ac");
 let clr = document.querySelector("#clr");
 let buttons = document.querySelectorAll(".btn");
 let operators = document.querySelectorAll(".opr");
-let equals = document.querySelector("#equals");
+let equal = document.querySelector("#equals");
 
 const buttonActions = {
   digit: (value) => updateDisplay(value),
