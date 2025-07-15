@@ -21,16 +21,15 @@ const calculatorState = {
 };
 
 const operations = {
-  add: (a, b) => a + b,
-  subtract: (a, b) => a - b,
-  multiply: (a, b) => a * b,
-  divide: (a, b) => (b === 0 ? undefinedOpr() : a / b),
+  add: (a, b) => Math.ceil((a + b) * 1e6) / 1e6,
+  subtract: (a, b) => Math.ceil((a - b) * 1e6) / 1e6,
+  multiply: (a, b) => Math.ceil((a * b) * 1e6) / 1e6,
+  divide: (a, b) => (b === 0 ? undefinedOpr() : Math.ceil((a / b) * 1e6) / 1e6),
 };
 
 function updateDisplay(value) {
   calculatorState.currentValue += value.textContent;
   onePeriodPerNum();
-  // logDisplay();
 }
 
 function setOperation(operation) {
@@ -64,7 +63,7 @@ function removeLastDigit() {
   lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
   if (signs.some((sgn) => lowerDisplay.textContent.includes(sgn))) {
     const numbers = lowerDisplay.textContent.split(/[-*+/]/);
-    calculatorState.currentValue = numbers[1];
+    calculatorState.currentValue = numbers[1].slice(0, -1);
   } else {
     calculatorState.currentValue = lowerDisplay.textContent;
   }
