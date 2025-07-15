@@ -63,7 +63,11 @@ function removeLastDigit() {
   lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
   if (signs.some((sgn) => lowerDisplay.textContent.includes(sgn))) {
     const numbers = lowerDisplay.textContent.split(/[-*+/]/);
-    calculatorState.currentValue = numbers[1].slice(0, -1);
+    if (numbers.length > 1) {
+      calculatorState.currentValue = numbers[1];
+    } else {
+      calculatorState.currentValue = ""
+    }  
   } else {
     calculatorState.currentValue = lowerDisplay.textContent;
   }
