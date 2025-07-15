@@ -1,7 +1,7 @@
 let lowerDisplay = document.querySelector(".lower");
 let upperDisplay = document.querySelector(".upper");
 let ac = document.querySelector("#ac");
-let clr = document.querySelector("#clr")
+let clr = document.querySelector("#clr");
 let buttons = document.querySelectorAll(".btn");
 let operators = document.querySelectorAll(".opr");
 let equal = document.querySelector("#equals");
@@ -21,61 +21,83 @@ const calculatorState = {
 };
 
 const operations = {
-  add: (a, b) => Math.round(((a + b) * 100000000)/100000000),
-  subtract: (a, b) => Math.round(((a - b) * 100000000)/100000000),
-  multiply: (a, b) => Math.round(((a * b) * 100000000)/100000000),
-  divide: (a, b) => (b === 0 ? undefinedOpr() : Math.round(((a / b) * 100000000)/100000000)),
+  add: (a, b) => a + b,
+  subtract: (a, b) => a - b,
+  multiply: (a, b) => a * b,
+  divide: (a, b) => (b === 0 ? undefinedOpr() : a / b),
 };
 
 function updateDisplay(value) {
   calculatorState.currentValue += value.textContent;
-  logDisplay()
+  onePeriodPerNum();
+  // logDisplay();
 }
 
 function setOperation(operation) {
   if (calculatorState.currentValue === "") return {};
-  if (signs.some(sgn => lowerDisplay.textContent.includes(sgn))) calculateResult();
+  if (signs.some((sgn) => lowerDisplay.textContent.includes(sgn)))
+    calculateResult();
   calculatorState.operator = operation.textContent;
-  calculatorState.previousValue = calculatorState.currentValue
-  calculatorState.currentValue = ""
-  logDisplay()
+  calculatorState.previousValue = calculatorState.currentValue;
+  calculatorState.currentValue = "";
+  logDisplay();
 }
 
 function logDisplay() {
   if (calculatorState.operator === "") {
-    lowerDisplay.textContent = calculatorState.currentValue
-  } 
-  else if (calculatorState.previousValue !== "" && signs.includes(calculatorState.operator)) {
-    lowerDisplay.textContent = calculatorState.previousValue + calculatorState.operator + calculatorState.currentValue
+    lowerDisplay.textContent = calculatorState.currentValue;
+  } else if (
+    calculatorState.previousValue !== "" &&
+    signs.includes(calculatorState.operator)
+  ) {
+    lowerDisplay.textContent =
+      calculatorState.previousValue +
+      calculatorState.operator +
+      calculatorState.currentValue;
+  } else if (signs.includes(calculatorState.operator)) {
+    lowerDisplay.textContent =
+      calculatorState.previousValue + calculatorState.operator;
   }
-  else if (signs.includes(calculatorState.operator)) {
-    lowerDisplay.textContent = calculatorState.previousValue + calculatorState.operator
-  } 
 }
 
 function removeLastDigit() {
-  lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1)
-   if (signs.some(sgn => lowerDisplay.textContent.includes(sgn))) {
-      const numbers = lowerDisplay.textContent.split(/[-*+/]/)
-      calculatorState.currentValue = numbers[1]
-   };
+  lowerDisplay.textContent = lowerDisplay.textContent.slice(0, -1);
+  if (signs.some((sgn) => lowerDisplay.textContent.includes(sgn))) {
+    const numbers = lowerDisplay.textContent.split(/[-*+/]/);
+    calculatorState.currentValue = numbers[1];
+  } else {
+    calculatorState.currentValue = lowerDisplay.textContent;
+  }
 }
 
 function calculateResult() {
-  if (calculatorState.currentValue === "" || calculatorState.operator === "") return {}
-  upperDisplay.textContent = lowerDisplay.textContent
+  if (calculatorState.currentValue === "" || calculatorState.operator === "")
+    return {};
+  upperDisplay.textContent = lowerDisplay.textContent;
   if (calculatorState.operator === "+") {
-    lowerDisplay.textContent = operations.add(parseFloat(calculatorState.previousValue), parseFloat(calculatorState.currentValue))
-    calculatorState.currentValue = lowerDisplay.textContent
+    lowerDisplay.textContent = operations.add(
+      parseFloat(calculatorState.previousValue),
+      parseFloat(calculatorState.currentValue)
+    );
+    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "-") {
-    lowerDisplay.textContent = operations.subtract(parseFloat(calculatorState.previousValue), parseFloat(calculatorState.currentValue))
-    calculatorState.currentValue = lowerDisplay.textContent
+    lowerDisplay.textContent = operations.subtract(
+      parseFloat(calculatorState.previousValue),
+      parseFloat(calculatorState.currentValue)
+    );
+    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "*") {
-    lowerDisplay.textContent = operations.multiply(parseFloat(calculatorState.previousValue), parseFloat(calculatorState.currentValue))
-    calculatorState.currentValue = lowerDisplay.textContent
+    lowerDisplay.textContent = operations.multiply(
+      parseFloat(calculatorState.previousValue),
+      parseFloat(calculatorState.currentValue)
+    );
+    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "/") {
-    lowerDisplay.textContent = operations.divide(parseFloat(calculatorState.previousValue), parseFloat(calculatorState.currentValue))
-    calculatorState.currentValue = lowerDisplay.textContent
+    lowerDisplay.textContent = operations.divide(
+      parseFloat(calculatorState.previousValue),
+      parseFloat(calculatorState.currentValue)
+    );
+    calculatorState.currentValue = lowerDisplay.textContent;
   }
 }
 
@@ -88,8 +110,22 @@ function clearDisplay() {
 }
 
 function undefinedOpr() {
-  upperDisplay.textContent = "undefined."
-  setTimeout(clearDisplay, 1000)
+  upperDisplay.textContent = "undefined.";
+  setTimeout(clearDisplay, 1000);
+}
+
+function onePeriodPerNum() {
+  const periodMatch = calculatorState.currentValue.match(/[.]/g);
+  if (periodMatch === null) {
+    logDisplay();
+  } else {
+    if (periodMatch.length > 1) {
+      calculatorState.currentValue = calculatorState.currentValue.slice(0, -1);
+      return {};
+    } else {
+      logDisplay();
+    }
+  }
 }
 
 buttons.forEach((element) => {
@@ -103,7 +139,6 @@ operators.forEach((element) => {
 });
 
 ac.addEventListener("click", () => buttonActions.AC());
-clr.addEventListener("click", () => buttonActions.clear())
+clr.addEventListener("click", () => buttonActions.clear());
 equal.addEventListener("click", () => buttonActions.equals());
-const signs = ["+", "-", "*", "/"]
-
+const signs = ["+", "-", "*", "/"];
