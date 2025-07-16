@@ -70,6 +70,8 @@ function removeLastDigit() {
     }  
   } else {
     calculatorState.currentValue = lowerDisplay.textContent;
+    calculatorState.previousValue = ""
+    calculatorState.operator = ""
   }
 }
 
