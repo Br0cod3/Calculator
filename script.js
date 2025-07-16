@@ -74,34 +74,36 @@ function removeLastDigit() {
 }
 
 function calculateResult() {
+  let result;
   if (calculatorState.currentValue === "" || calculatorState.operator === "")
     return {};
   upperDisplay.textContent = lowerDisplay.textContent;
   if (calculatorState.operator === "+") {
-    lowerDisplay.textContent = operations.add(
+    result = operations.add(
       parseFloat(calculatorState.previousValue),
       parseFloat(calculatorState.currentValue)
     );
-    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "-") {
-    lowerDisplay.textContent = operations.subtract(
+    result = operations.subtract(
       parseFloat(calculatorState.previousValue),
       parseFloat(calculatorState.currentValue)
     );
-    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "*") {
-    lowerDisplay.textContent = operations.multiply(
+    result = operations.multiply(
       parseFloat(calculatorState.previousValue),
       parseFloat(calculatorState.currentValue)
     );
-    calculatorState.currentValue = lowerDisplay.textContent;
   } else if (calculatorState.operator === "/") {
-    lowerDisplay.textContent = operations.divide(
+    result = operations.divide(
       parseFloat(calculatorState.previousValue),
       parseFloat(calculatorState.currentValue)
     );
-    calculatorState.currentValue = lowerDisplay.textContent;
   }
+  
+  lowerDisplay.textContent = result;
+  calculatorState.currentValue = result;
+  calculatorState.previousValue = ""
+  calculatorState.operator = ""
 }
 
 function clearDisplay() {
