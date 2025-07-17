@@ -23,7 +23,7 @@ const calculatorState = {
 const operations = {
   add: (a, b) => Math.ceil((a + b) * 1e6) / 1e6,
   subtract: (a, b) => Math.ceil((a - b) * 1e6) / 1e6,
-  multiply: (a, b) => Math.ceil((a * b) * 1e6) / 1e6,
+  multiply: (a, b) => Math.ceil(a * b * 1e6) / 1e6,
   divide: (a, b) => (b === 0 ? undefinedOpr() : Math.ceil((a / b) * 1e6) / 1e6),
 };
 
@@ -33,6 +33,11 @@ function updateDisplay(value) {
 }
 
 function setOperation(operation) {
+  if (calculatorState.previousValue !== "" && calculatorState.operator !== "" && calculatorState.currentValue === "") {
+    calculatorState.operator = operation.textContent;
+    logDisplay();
+    return;
+  }
   if (calculatorState.currentValue === "") return {};
   if (signs.some((sgn) => lowerDisplay.textContent.includes(sgn)))
     calculateResult();
@@ -66,12 +71,12 @@ function removeLastDigit() {
     if (numbers.length > 1) {
       calculatorState.currentValue = numbers[1];
     } else {
-      calculatorState.currentValue = ""
-    }  
+      calculatorState.currentValue = "";
+    }
   } else {
     calculatorState.currentValue = lowerDisplay.textContent;
-    calculatorState.previousValue = ""
-    calculatorState.operator = ""
+    calculatorState.previousValue = "";
+    calculatorState.operator = "";
   }
 }
 
@@ -101,11 +106,11 @@ function calculateResult() {
       parseFloat(calculatorState.currentValue)
     );
   }
-  
+
   lowerDisplay.textContent = result;
   calculatorState.currentValue = result;
-  calculatorState.previousValue = ""
-  calculatorState.operator = ""
+  calculatorState.previousValue = "";
+  calculatorState.operator = "";
 }
 
 function clearDisplay() {
