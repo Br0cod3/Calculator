@@ -72,6 +72,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   color: var(--display-grey);
+  font-style: italic;
 }
 
 .lower {
